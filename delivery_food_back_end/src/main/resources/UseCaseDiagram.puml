@@ -1,0 +1,32 @@
+@startuml
+
+left to right direction
+
+actor User
+
+rectangle FrondEnd{
+
+User --> (register)
+(LogicSuccessful)
+(ErrorLogin)
+(RegisterSuccessful)
+(RegisterError)
+(UserInput)
+(UserDisplay)
+User --> (login)
+}
+
+
+rectangle BackEnd{
+(login) -> (CheckAccount)
+(CheckAccount) -> (LogicSuccessful)
+(CheckAccount) -> (ErrorLogin)
+(CheckRegistration) -> (RegisterError)
+(CheckRegistration) -> (RegisterSuccessful)
+(UserInput) -> (OperationExecution)
+(OperationExecution) -> (UserDisplay)
+}
+
+(UserDisplay) -> User
+
+@enduml

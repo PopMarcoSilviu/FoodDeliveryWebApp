@@ -1,0 +1,185 @@
+@startuml
+
+class Account{
+   -currentId
+   -id
+   -password
+   -username
+   -userType
+   +getters()
+}
+
+enum UserType{
+    CUSTOMER
+    ADMIN
+    EMPLOYEE
+}
+
+class BaseProduct{
+     -title
+     -rating
+     -calories
+     -protein
+     -fat
+     -sodium
+     -price
+     -serialVersionUID
+     +setters()
+     +getters()
+}
+
+class CompositeProduct{
+  -products;
+  -serialVersionUID
+    -title
+    -rating
+    -calories
+    -protein
+    -fat
+    -sodium
+    -price
+
+}
+
+class DeliveryService{
+  -deliveryService
+  -pcs
+  -orderData
+  -data
+  -accounts
+  -isWellFormed()
+  +saveData()
+  +loadData()
+  +addMenuItem()
+  +createOrder()
+  +deleteMenuItem()
+  +modifyMenuItem()
+  +importFromCsv()
+  +generateReportTimeInterval()
+  +generateReportForNbOfProducts()
+  +generateReportClientsValueAndNbOfTimes()
+  +generateReportSpecificDay()
+  +createAccount()
+  +setters()
+  +getters()
+
+}
+
+Interface IDeliveryService{
++saveData()
+  +loadData()
+  +addMenuItem()
+  +createOrder()
+  +deleteMenuItem()
+  +modifyMenuItem()
+  +importFromCsv()
+  +generateReportTimeInterval()
+  +generateReportForNbOfProducts()
+  +generateReportClientsValueAndNbOfTimes()
+  +generateReportSpecificDay()
+  +createAccount()
+}
+
+abstract class MenuItem{
+    -id
+    -idProduct
+}
+class Order{
+ -serialVersionUID = 123L
+ -orderID
+ -clientID
+ -orderDate
+ +setters()
+ +getters()
+ +hashCode()
+
+}
+
+class Utils{
++readFile()
++createMenuItem()
++objectListToString()
++checkForRegistrationAndCreateAccount()
++checkForLogin()
++modifyProduct()
+}
+
+class ServerInterface{
+ -xSize
+ -ySize
+ -font
+ -frame
+ -mainPanel
+ -closeAndSaveButton
+ -saveButton
+ -save()
+ -close()
+}
+
+class Filter {
++init()
++destroy()
++doFilter()
+}
+
+class WebSocketConfig{
++configureMessageBroker()
++registerStompEndpoints()
+}
+
+class Bill{
++create()
+}
+
+class CreateReport{
++createReport()
++getAndUpdateNumberFromFile()
+}
+
+class Serializer{
++serialize()
++deserialize()
+}
+
+class Wrapper {
+~orderData
+~data
+~accounts
+}
+
+class FileAlreadyExistsException{
+}
+
+class ApiController{
+~simpMessagingTemplate
++menuItemsGetBase()
++accountsGet()
++menuItemsGetComposite()
++orderPost()
++createCompoundProduct()
++reportTime()
++productPost()
++checkForRegistration()
++deletePostItem()
++checkForLogin()
++modifyProduct()
++importFromCsv()
++propertyChange()
+}
+
+
+
+class ApiController implements PropertyChangeListener
+class FileAlreadyExistsException extends Exception
+class Wrapper implements Serializable
+class Filter implements javax.servlet.Filter
+class WebSocketConfig implements WebSocketMessageBrokerConfigurer
+class Order implements Serializable
+class MenuItem implements Serializable
+DeliveryService --* Account
+DeliveryService --* MenuItem
+DeliveryService --* Order
+class CompositeProduct extends MenuItem
+class BaseProduct extends MenuItem
+class DeliveryService implements IDeliveryService
+@enduml
